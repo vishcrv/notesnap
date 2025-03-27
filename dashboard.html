@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App - Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="dashboard-body" data-theme="dark">
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>notebook</h2>
+            </div>
+            
+            <button class="btn btn-primary create-note-btn">
+                <i class="fas fa-plus"></i> Create New Note
+            </button>
+            
+            <div class="notes-list">
+                <h3>My Notes</h3>
+                <div class="note-items">
+                    <!-- Note items will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Clock moved to sidebar -->
+            <div class="card1">
+                <p class="time-text">
+                    <span id="current-time"></span>
+                    <span id="time-sub-text"></span>
+                </p>
+                <p class="day-text" id="current-day"></p>
+            </div>
+            
+            <div class="sidebar-footer">
+                <button class="btn btn-icon" onclick="window.location.href='settings.html'">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- Notes Grid View -->
+            <div class="notes-grid" id="notesGrid">
+                <!-- Notes will be displayed here -->
+            </div>
+
+            <!-- Full Page Note Editor -->
+            <div class="full-page-editor" id="noteEditor" style="display: none;">
+                
+                <div class="editor-content">
+                    <div class="note-title" contenteditable="true" data-placeholder="Title"></div>
+                    <div class="note-body" contenteditable="true" data-placeholder="Start typing your note..."></div>
+                </div>
+
+                <div class="editor-toolbar">
+                    <button class="btn btn-icon back-to-grid">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button class="btn btn-icon" id="attachImage">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <div class="toolbar-spacer"></div>
+                    <button class="btn btn-icon btn-delete" id="deleteNote" title="Delete Note">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+
+                
+                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                
+                <!-- Image Toolbar (Hidden by default) -->
+                <div class="image-toolbar" id="imageToolbar">
+                    <button class="btn btn-icon" id="deleteImage" title="Delete Image">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                    <button class="btn btn-icon" id="resizeImage" title="Resize Image">
+                        <i class="fas fa-arrows-alt-h"></i>
+                    </button>
+                    <div class="resize-slider">
+                        <input type="range" id="imageSize" min="10" max="100" value="100">
+                        <span id="sizeValue">100%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delete Confirmation Modal -->
+            <div class="modal" id="deleteConfirmModal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>Delete Note</h3>
+                        <button class="btn btn-icon close-modal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this note? This action cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" id="cancelDelete">Cancel</button>
+                        <button class="btn btn-delete" id="confirmDelete">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Clock functionality
+        function updateTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            
+            // Format hours to 12-hour format
+            const formattedHours = hours % 12 || 12; // Convert 0 to 12
+            const formattedMinutes = String(minutes).padStart(2, '0'); // Add leading zero if needed
+
+            // Update the time and day in the HTML
+            document.getElementById('current-time').textContent = `${formattedHours}:${formattedMinutes}`;
+            document.getElementById('time-sub-text').textContent = ampm;
+            document.getElementById('current-day').textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
+        }
+
+        // Update time every second
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call to set the time immediately
+    </script>
+</body>
+</html> 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Notes App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Notes App</div>
+        <div class="nav-buttons">
+            <a href="dashboard.html" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+    </nav>
+
+    <div class="settings-content">
+        <h1>Settings</h1>
+        
+        <div class="settings-section">
+            <h2><i class="fas fa-palette"></i> Theme</h2>
+            <p>Choose your preferred theme for the app interface.</p>
+            
+            <div class="theme-options">
+                <div class="theme-option">
+                    <input type="radio" id="lightTheme" name="theme" value="light">
+                    <label for="lightTheme">
+                        <i class="fas fa-sun"></i> Light Theme
+                    </label>
+                </div>
+                
+                <div class="theme-option">
+                    <input type="radio" id="darkTheme" name="theme" value="dark">
+                    <label for="darkTheme">
+                        <i class="fas fa-moon"></i> Dark Theme
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
