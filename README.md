@@ -1,4 +1,4 @@
-# NoteFlow - Modern Note-Taking Web App
+# NoteSnap - Modern Note-Taking Web App
 
 A clean and modern web application for taking and organizing notes. Built with HTML, CSS, and JavaScript.
 
